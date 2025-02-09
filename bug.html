@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text is initially visible.
+  </div>
+  <button onclick="myFunction()">Click Me</button>
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDiv").innerHTML = ""; // Empty the div
+      // Missing crucial step:  Remove the event listener after the element is removed or replaced
+      // This prevents the following line from throwing error if the element is removed
+      // document.getElementById("myDiv").addEventListener("click", myFunction);
+    }
+  </script>
+</body>
+</html>
